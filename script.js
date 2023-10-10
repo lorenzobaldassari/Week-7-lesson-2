@@ -4,10 +4,6 @@ const savedNamePosition = document.getElementById(`savedName`);
 const nameInput = document.getElementById(`inputName`);
 const name = `name`;
 const namePosition = document.createElement(`p`);
-// const saveName = (event) => {
-//   event.preventDefault();
-//   localStorage.getItem(name, nameInput);
-// };
 
 saveButton.addEventListener(`click`, function (event) {
   event.preventDefault();
@@ -44,15 +40,20 @@ const writeName = () => {
 
 let timer = document.getElementById(`timer`);
 
-// const timer = () => {
-//   time.innerText = i;
-// };
-let time = 0;
-setInterval(() => {
-  time++;
-  sessionStorage.setItem(`time`, time);
-
-  timer.innerText = sessionStorage.getItem(`time`);
-  console.log(sessionStorage.getItem(`time`));
-}, 1000);
-//   actualTime = new Date().getTime();
+if (sessionStorage.getItem(`time`)) {
+  setInterval(() => {
+    let time = sessionStorage.getItem(`time`);
+    timer.innerText = time;
+    time++;
+    sessionStorage.setItem(`time`, time);
+  }, 1000);
+} else {
+  let timeZero = 0;
+  sessionStorage.setItem(`time`, timeZero);
+  setInterval(() => {
+    timer.innerText = sessionStorage.getItem(`time`);
+    console.log(sessionStorage.getItem(`time`));
+    timeZero++;
+    sessionStorage.setItem(`time`, timeZero);
+  }, 1000);
+}
