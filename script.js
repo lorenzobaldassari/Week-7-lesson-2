@@ -5,6 +5,9 @@ const nameInput = document.getElementById(`inputName`);
 const name = `name`;
 const namePosition = document.createElement(`p`);
 
+namePosition.innerText = localStorage.getItem(name);
+savedNamePosition.appendChild(namePosition);
+
 saveButton.addEventListener(`click`, function (event) {
   event.preventDefault();
   if (nameInput.value) {
@@ -33,7 +36,7 @@ const writeName = () => {
   namePosition.innerText = localStorage.getItem(name);
   console.log(namePosition.value);
   console.log(namePosition);
-  savedNamePosition.appendChild(namePosition);
+  
 };
 
 //esercizio 2
